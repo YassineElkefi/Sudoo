@@ -36,7 +36,7 @@ export function useSaveGame(state: GameState) {
   }, [state]);
 }
 
-export function loadSavedGame(): (Omit<GameState, "selectedCell" | "isPaused"> & { isPaused: true }) | null {
+export function loadSavedGame(): (Omit<GameState, "isPaused"> & { isPaused: true }) | null {
   try {
     const raw = localStorage.getItem(SAVE_KEY);
     if (!raw) return null;
@@ -52,6 +52,7 @@ export function loadSavedGame(): (Omit<GameState, "selectedCell" | "isPaused"> &
       noteMode: saved.noteMode,
       isPaused: true,
       selectedCell: null,
+      isLost: false
     };
   } catch {
     return null;
