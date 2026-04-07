@@ -28,7 +28,10 @@ export default function Home() {
     togglePause,
     toggleNoteMode,
     dismissWin,
-    dismissLoss
+    dismissLoss,
+    maxHints,
+    hintsUsed,
+    useHint
   } = useGameState();
 
   useKeyboard({
@@ -99,6 +102,9 @@ export default function Home() {
           theme={theme}
           onInput={inputValue}
           onToggleNotes={toggleNoteMode}
+          hintsUsed={hintsUsed}
+          maxHints={maxHints}
+          onHint={useHint}
         />
       </main>
 
@@ -132,6 +138,7 @@ export default function Home() {
           //onRetry={() => startNewGame(state.size, state.difficulty)}
         />
       )}
+      <Footer theme={theme} />
     </div>
   );
 }
