@@ -12,6 +12,7 @@ export const createEmptyGrid = (size: GridSize): SudokuCell[][] =>
       isHighlighted: false,
       isSelected: false,
       isSameValue: false,
+      isFading: false
     }))
   );
 
@@ -211,4 +212,34 @@ export const getDigitCounts = (grid: SudokuCell[][], solution: number[][]): Map<
     })
   );
   return counts;
+};
+
+// Smart Notes helper
+export const removeNotesFromPeers = (
+  grid: SudokuCell[][],
+  row: number,
+  col: number,
+  value: number,
+  size: number
+) => {
+  const { boxW, boxH } = getBoxDimensions(size as GridSize);
+  return grid.map((rCells, r) =>
+    rCells.map((cell, c) => {
+      const sameRow = r === row;
+      const sameCol = c === col;
+      const sameBox =
+        Math.floor(r / boxH) === Math.floor(row / boxH) &&
+        Math.floor(c / boxW) === Math.floor(col / boxW);
+
+      if ((sameRow || sameCol || sameBox) && !(r === row && c === col)) {
+        if (cell.notes.has(value)) {
+          const newNotes = new Set(cell.notes);
+          newNotes.delete(value);
+          return { ...cell, notes: newNotes };
+        }
+      }
+
+      return cell;
+    })
+  );
 };

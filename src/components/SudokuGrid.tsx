@@ -48,7 +48,6 @@ export default function SudokuGrid({
             : "0 0 0 1px rgba(0,0,0,0.18), 0 24px 64px rgba(0,0,0,0.12)",
           pointerEvents: "none",
           zIndex: 2,
-          borderRadius: 10,
         }}
       />
 
@@ -120,6 +119,7 @@ export default function SudokuGrid({
                       userSelect: "none",
                       lineHeight: 1,
                       transition: "color 0.15s",
+                      animation: cell.isFading ? "fadeOut 1s ease-out forwards" : "none",
                     }}
                   >
                     {cell.value}

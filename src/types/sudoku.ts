@@ -9,6 +9,7 @@ export interface SudokuCell {
   isHighlighted: boolean;
   isSelected: boolean;
   isSameValue: boolean;
+  isFading?: boolean;
 }
 
 export interface GameState {

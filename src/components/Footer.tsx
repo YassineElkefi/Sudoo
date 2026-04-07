@@ -1,24 +1,39 @@
+// components/Footer.tsx
 export default function Footer({ theme }: { theme: "light" | "dark" }) {
   const isDark = theme === "dark";
 
   return (
     <footer
-      className="relative z-10 w-full py-4 text-center border-t"
       style={{
-        borderColor: isDark ? "#2a2835" : "#d6d3cc",
-        background: isDark ? "#0f0f17" : "#f2f0eb",
+        textAlign: "center",
+        padding: "20px 16px 28px",
+        fontSize: "0.78rem",
+        letterSpacing: "0.06em",
+        color: isDark ? "rgba(232,230,240,0.35)" : "rgba(26,24,37,0.35)",
+        fontFamily: "'Palatino Linotype', Palatino, 'Book Antiqua', serif",
+        userSelect: "none",
       }}
     >
-      <p
-        className="text-xs"
+      made with{" "}
+      <span
         style={{
-          color: isDark ? "#a8a5b5" : "#6b7280",
+          color: "#e05c5c",
+          display: "inline-block",
+          animation: "heartbeat 1.6s ease-in-out infinite",
         }}
       >
-        made by{" "}
-        <span className="font-semibold text-indigo-400">Yassine</span>{" "}
-        with <span className="text-red-500">♥</span>
-      </p>
+        ♥
+      </span>{" "}
+      by Yassine
+      <style>{`
+        @keyframes heartbeat {
+          0%, 100% { transform: scale(1); }
+          14%       { transform: scale(1.25); }
+          28%       { transform: scale(1); }
+          42%       { transform: scale(1.15); }
+          70%       { transform: scale(1); }
+        }
+      `}</style>
     </footer>
   );
 }
